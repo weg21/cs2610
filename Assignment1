@@ -1,0 +1,401 @@
+//**************************************
+// Name: Virtual Keyboard or onscreen keyboard
+// Description:on screen keyboard, which controls keyboard using mouse
+// By: deepak d king
+//
+//This code is copyrighted and has// limited warranties.Please see http://www.Planet-Source-Code.com/vb/scripts/ShowCode.asp?txtCodeId=7186&lngWId=2//for details.//**************************************
+
+import java.awt.*;
+import java.awt.Robot.*;
+import java.awt.event.*;
+import java.io.*;
+import java.awt.AWTException;
+import java.awt.Robot;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.*;
+public class virtualKeyboard extends JFrame implements ActionListener
+{
+	JButton a5=new JButton("5");
+//------
+	
+JButton b=new JButton("b");
+JButton n=new JButton("n"); 
+JButton m=new JButton("m");
+JButton l=new JButton("l");
+JButton space=new JButton("space");
+JButton v=new JButton("v"); 
+JButton z=new JButton("z");
+JButton y=new JButton("y");
+JButton x=new JButton("x");
+JButton c=new JButton("c"); 
+JButton k=new JButton("k");
+JButton w=new JButton("w");
+JButton q=new JButton("q");
+JButton backspace=new JButton("backspace");
+JButton s=new JButton("s");
+JButton e=new JButton("e");
+JButton d=new JButton("d");
+JButton f=new JButton("f");
+JButton r=new JButton("r");
+JButton t=new JButton("t");
+JButton u=new JButton("u");
+JButton i=new JButton("i"); 
+JButton o=new JButton("o"); 
+JButton p=new JButton("p");
+JButton a=new JButton("a");
+JButton g=new JButton("g");
+JButton h=new JButton("h");
+JButton j=new JButton("j");
+public virtualKeyboard(String keybord) {
+setAlwaysOnTop(true);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setBounds(100, 100, 800, 300);
+setFocusableWindowState(false);
+//
+JPanel contentPane = new JPanel();
+JPanel top= new JPanel();
+JPanel mid= new JPanel();
+JPanel bot= new JPanel();
+JPanel spc= new JPanel();
+JPanel topLane = new JPanel();
+JPanel midLane = new JPanel();
+JPanel botLane = new JPanel();
+JPanel spcLane = new JPanel();
+contentPane.setLayout(new GridLayout(4,1));
+contentPane.add(top);
+contentPane.add(mid);
+contentPane.add(bot);
+contentPane.add(spc);
+top.add(topLane);
+top.setPreferredSize(new Dimension(600,50));
+top.setBorder(BorderFactory.createEmptyBorder(-5, 0, 0, 0));
+mid.add(midLane);
+mid.setPreferredSize(new Dimension(550,50));
+mid.setBorder(BorderFactory.createEmptyBorder(-5, 0, 0, 0));
+bot.add(botLane);
+bot.setPreferredSize(new Dimension(450,50));
+bot.setBorder(BorderFactory.createEmptyBorder(-5, 0, 0, 0));
+spc.add(spcLane);
+spc.setPreferredSize(new Dimension(450,50));
+spc.setBorder(BorderFactory.createEmptyBorder(-5, 0, 0, 0));
+
+topLane.setLayout(new GridLayout(1,10));
+midLane.setLayout(new GridLayout(1,9));
+botLane.setLayout(new GridLayout(1,7));
+spcLane.setLayout(new GridLayout(1,9));
+spcLane.setPreferredSize(new Dimension(350,50));
+
+
+setContentPane(contentPane);
+
+a.setPreferredSize(new Dimension(50,50));
+b.setPreferredSize(new Dimension(50,50));
+c.setPreferredSize(new Dimension(50,50));
+d.setPreferredSize(new Dimension(50,50));
+e.setPreferredSize(new Dimension(50,50));
+f.setPreferredSize(new Dimension(50,50));
+g.setPreferredSize(new Dimension(50,50));
+h.setPreferredSize(new Dimension(50,50));
+i.setPreferredSize(new Dimension(50,50));
+j.setPreferredSize(new Dimension(50,50));
+k.setPreferredSize(new Dimension(50,50));
+l.setPreferredSize(new Dimension(50,50));
+m.setPreferredSize(new Dimension(50,50));
+n.setPreferredSize(new Dimension(50,50));
+o.setPreferredSize(new Dimension(50,50));
+p.setPreferredSize(new Dimension(50,50));
+q.setPreferredSize(new Dimension(50,50));
+r.setPreferredSize(new Dimension(50,50));
+s.setPreferredSize(new Dimension(50,50));
+t.setPreferredSize(new Dimension(50,50));
+u.setPreferredSize(new Dimension(50,50));
+v.setPreferredSize(new Dimension(50,50));
+w.setPreferredSize(new Dimension(50,50));
+x.setPreferredSize(new Dimension(50,50));
+y.setPreferredSize(new Dimension(50,50));
+z.setPreferredSize(new Dimension(50,50));
+topLane.add(q);q.addActionListener(this);
+topLane.add(w);w.addActionListener(this);
+topLane.add(e);e.addActionListener(this);
+topLane.add(r);r.addActionListener(this);
+topLane.add(t);t.addActionListener(this);
+topLane.add(y);y.addActionListener(this);
+topLane.add(u);u.addActionListener(this);
+topLane.add(i);i.addActionListener(this);
+topLane.add(o);o.addActionListener(this);
+topLane.add(p);p.addActionListener(this);
+midLane.add(a);a.addActionListener(this);
+midLane.add(s);s.addActionListener(this);
+midLane.add(d);d.addActionListener(this);
+midLane.add(f);f.addActionListener(this);
+midLane.add(g);g.addActionListener(this);
+midLane.add(h);h.addActionListener(this);
+midLane.add(j);j.addActionListener(this);
+midLane.add(k);k.addActionListener(this);
+midLane.add(l);l.addActionListener(this);
+botLane.add(z);z.addActionListener(this);
+botLane.add(x);x.addActionListener(this);
+botLane.add(c);c.addActionListener(this);
+botLane.add(v);v.addActionListener(this);
+botLane.add(b);b.addActionListener(this);
+botLane.add(n);n.addActionListener(this);
+botLane.add(m);m.addActionListener(this);
+
+spcLane.add(space);space.addActionListener(this);
+}
+public void actionPerformed(ActionEvent event){
+if(event.getSource()==backspace)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_BACK_SPACE);
+}
+catch(Exception E){}
+}
+if(event.getSource()==q)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_Q);
+}
+catch(Exception E){}
+}
+if(event.getSource()==w)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_W);
+}
+catch(Exception E){}
+}
+if(event.getSource()==e)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_E);
+}
+catch(Exception E){}
+}
+if(event.getSource()==r)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_R);
+}
+catch(Exception E){}
+}
+if(event.getSource()==t)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_T);
+}
+catch(Exception E){}
+}
+if(event.getSource()==u)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_U);
+}
+catch(Exception E){}
+}
+if(event.getSource()==i)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_I);
+}
+catch(Exception E){}
+}
+if(event.getSource()==o)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_O);
+}
+catch(Exception E){}
+}
+if(event.getSource()==p)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_P);
+}
+catch(Exception E){}
+}
+if(event.getSource()==a )
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_A);
+}
+catch(Exception E){}
+}
+if(event.getSource()==s)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_S);
+}
+catch(Exception E){}
+}
+if(event.getSource()==y)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_Y);
+}
+catch(Exception E){}
+}
+if(event.getSource()==d)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_D);
+}
+catch(Exception E){}
+}
+if(event.getSource()==f)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_F);
+}
+catch(Exception E){}
+}
+if(event.getSource()==g)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_G);
+}
+catch(Exception E){}
+}
+if(event.getSource()==h)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_H);
+}
+catch(Exception E){}
+}
+if(event.getSource()==j)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_J);
+}
+catch(Exception E){}
+}
+if(event.getSource()==k)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_K);
+}
+catch(Exception E){}
+}
+if(event.getSource()==l)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_L);
+}
+catch(Exception E){}
+}
+if(event.getSource()==m)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_M);
+}
+catch(Exception E){}
+}
+if(event.getSource()==z)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_Z);
+}
+catch(Exception E){}
+}
+if(event.getSource()==x)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_X);
+}
+catch(Exception E){}
+}
+if(event.getSource()==c)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_C);
+}
+catch(Exception E){}
+}
+if(event.getSource()==v)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_V);
+}
+catch(Exception E){}
+}
+if(event.getSource()==b)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_B);
+}
+catch(Exception E){}
+}
+if(event.getSource()==n)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_N);
+}
+catch(Exception E){}
+}
+if(event.getSource()==m)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_M);
+}
+catch(Exception E){}
+}
+ if(event.getSource()==space)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_SPACE);
+}
+catch(Exception E){}
+}
+ if(event.getSource()==a5)
+ {
+ try{
+ Robot robot = new Robot(); 
+ robot.keyPress(KeyEvent.VK_5);
+ }
+ catch(Exception E){}
+ }
+ 
+}
+public static void main(String[] args) {
+virtualKeyboard frame = new virtualKeyboard("keybord");
+frame.setSize(600,242);
+frame.setVisible(true);
+} 
+}
