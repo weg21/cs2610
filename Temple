@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
+public class virtualKeyboard {
+
+	public static void main(String [] args) throws IOException{
+		
+		BufferedReader br = new BufferedReader(new FileReader("src/keyboardDoc.txt"));
+		String[] str = new String[3];
+		String temple;
+		String[] split1 = new String[10];
+		String[] split2 = new String[9];
+		String[] split3 = new String[7];
+		for(int i=0;(temple=br.readLine())!=null;i++)
+		{
+			str[i]=temple;
+			
+		}
+		System.out.println(str.length);
+		
+		split1 = str[0].split(",");
+		split2 = str[1].split(",");
+		split3 = str[2].split(",");
+//		System.out.println(split1[3]);
+//		System.out.println(split2[3]);
+//		System.out.println(split3[3]);
+		
+		for(int i=0;)
+		
+	}
+	
+}
