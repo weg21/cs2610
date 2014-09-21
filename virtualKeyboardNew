@@ -1,0 +1,335 @@
+import java.awt.*;
+import java.awt.Robot.*;
+import java.awt.event.*;
+import java.io.*;
+import java.awt.AWTException;
+import java.awt.GridBagConstraints;
+import java.awt.Robot;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.*;
+public class VirtualKeyboard extends JFrame implements ActionListener
+{
+	
+JButton b=new JButton("b");
+JButton n=new JButton("n"); 
+JButton m=new JButton("m");
+JButton l=new JButton("l");
+JButton v=new JButton("v"); 
+JButton z=new JButton("z");
+JButton y=new JButton("y");
+JButton x=new JButton("x");
+JButton c=new JButton("c"); 
+JButton k=new JButton("k");
+JButton w=new JButton("w");
+JButton q=new JButton("q");
+JButton s=new JButton("s");
+JButton e=new JButton("e");
+JButton d=new JButton("d");
+JButton f=new JButton("f");
+JButton r=new JButton("r");
+JButton t=new JButton("t");
+JButton u=new JButton("u");
+JButton i=new JButton("i"); 
+JButton o=new JButton("o"); 
+JButton p=new JButton("p");
+JButton a=new JButton("a");
+JButton g=new JButton("g");
+JButton h=new JButton("h");
+JButton j=new JButton("j");
+JButton space=new JButton("space");
+
+JButton btnL1[] = {q,w,e,r,t,y,u,i,o,p};
+JButton btnL2[] = {a,s,d,f,g,h,j,k,l};
+JButton btnL3[] = {z,x,c,v,b,n,m};
+
+
+
+public VirtualKeyboard(String keybord) {
+setAlwaysOnTop(true);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setBounds(100, 100, 800, 300);
+setFocusableWindowState(false);
+
+JPanel contentPane = new JPanel();
+
+contentPane.setLayout(new GridBagLayout());
+
+GridBagConstraints cons = new GridBagConstraints();
+
+
+
+
+for(int i=0;i<10;i++)
+{
+	cons.weightx = 0.5;
+	cons.fill = GridBagConstraints.HORIZONTAL;
+	cons.gridx = i;
+	cons.gridy = 0;
+	contentPane.add(btnL1[i], cons);
+	btnL1[i].addActionListener(this);
+}
+for(int i=0;i<9;i++)
+{
+	cons.weightx = 0.5;
+	cons.fill = GridBagConstraints.HORIZONTAL;
+	cons.gridx = i;
+	cons.gridy = 1;
+	contentPane.add(btnL2[i], cons);
+	btnL2[i].addActionListener(this);
+}
+for(int i=0;i<7;i++)
+{
+	cons.weightx = 0.5;
+	cons.fill = GridBagConstraints.HORIZONTAL;
+	cons.gridx = i+1;
+	cons.gridy = 2;
+	contentPane.add(btnL3[i], cons);
+	btnL3[i].addActionListener(this);
+}
+
+cons.weightx = 0.5;
+cons.fill = GridBagConstraints.HORIZONTAL;
+cons.gridx = 1;
+cons.gridy = 3;
+cons.gridwidth = 7;
+contentPane.add(space,cons);
+space.addActionListener(this);
+
+setContentPane(contentPane);
+}
+public void actionPerformed(ActionEvent event){
+
+if(event.getSource()==q)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_Q);
+}
+catch(Exception E){}
+}
+if(event.getSource()==w)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_W);
+}
+catch(Exception E){}
+}
+if(event.getSource()==e)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_E);
+}
+catch(Exception E){}
+}
+if(event.getSource()==r)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_R);
+}
+catch(Exception E){}
+}
+if(event.getSource()==t)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_T);
+}
+catch(Exception E){}
+}
+if(event.getSource()==u)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_U);
+}
+catch(Exception E){}
+}
+if(event.getSource()==i)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_I);
+}
+catch(Exception E){}
+}
+if(event.getSource()==o)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_O);
+}
+catch(Exception E){}
+}
+if(event.getSource()==p)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_P);
+}
+catch(Exception E){}
+}
+if(event.getSource()==a )
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_A);
+}
+catch(Exception E){}
+}
+if(event.getSource()==s)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_S);
+}
+catch(Exception E){}
+}
+if(event.getSource()==y)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_Y);
+}
+catch(Exception E){}
+}
+if(event.getSource()==d)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_D);
+}
+catch(Exception E){}
+}
+if(event.getSource()==f)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_F);
+}
+catch(Exception E){}
+}
+if(event.getSource()==g)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_G);
+}
+catch(Exception E){}
+}
+if(event.getSource()==h)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_H);
+}
+catch(Exception E){}
+}
+if(event.getSource()==j)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_J);
+}
+catch(Exception E){}
+}
+if(event.getSource()==k)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_K);
+}
+catch(Exception E){}
+}
+if(event.getSource()==l)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_L);
+}
+catch(Exception E){}
+}
+if(event.getSource()==m)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_M);
+}
+catch(Exception E){}
+}
+if(event.getSource()==z)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_Z);
+}
+catch(Exception E){}
+}
+if(event.getSource()==x)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_X);
+}
+catch(Exception E){}
+}
+if(event.getSource()==c)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_C);
+}
+catch(Exception E){}
+}
+if(event.getSource()==v)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_V);
+}
+catch(Exception E){}
+}
+if(event.getSource()==b)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_B);
+}
+catch(Exception E){}
+}
+if(event.getSource()==n)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_N);
+}
+catch(Exception E){}
+}
+ if(event.getSource()==space)
+{
+try{
+Robot robot = new Robot(); 
+robot.keyPress(KeyEvent.VK_SPACE);
+}
+catch(Exception E){}
+}
+ 
+}
+public static void main(String[] args) {
+VirtualKeyboard frame = new VirtualKeyboard("keybord");
+frame.setSize(600,242);
+frame.setVisible(true);
+} 
+}
