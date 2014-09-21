@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -34,7 +35,7 @@ public class testing{
 		cons.gridy = 0;
 		contentPane.add(n, cons);
 		
-		ComponentGlassPane GlassPane = new ComponentGlassPane();
+		JPanel GlassPane = new JPanel();
 		GlassPane.setLayout(new BorderLayout());
 		frame.setGlassPane(GlassPane);
 		//GlassPane.setBackground(Color.blue);
@@ -45,5 +46,11 @@ public class testing{
 		
 	}
 	
+
+	public class MyGlassPane extends JComponent{
+		protected void paintComponent(Graphics g) {
+		
+		}
+	}
 	
 }
