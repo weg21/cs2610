@@ -1,0 +1,49 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class testing{
+	
+	
+	public static void main(String [] args){
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(new Dimension(1000,500));
+		frame.setVisible(true);
+		Container contentPane=frame.getContentPane();
+		JButton b=new JButton("b");
+		JButton n=new JButton("n"); 
+		contentPane.setLayout(new GridBagLayout());
+		GridBagConstraints cons = new GridBagConstraints();
+		cons.weightx = 0.5;
+		cons.fill = GridBagConstraints.HORIZONTAL;
+		cons.gridx = 1;
+		cons.gridy = 0;
+		contentPane.add(b, cons);
+		cons.weightx = 0.5;
+		cons.fill = GridBagConstraints.HORIZONTAL;
+		cons.gridx = 2;
+		cons.gridy = 0;
+		contentPane.add(n, cons);
+		
+		ComponentGlassPane GlassPane = new ComponentGlassPane();
+		GlassPane.setLayout(new BorderLayout());
+		frame.setGlassPane(GlassPane);
+		//GlassPane.setBackground(Color.blue);
+		GlassPane.setVisible(true);
+		GlassPane.setPreferredSize(new Dimension(1000,500));
+		//GlassPane.addAncestorListener();
+		
+		
+	}
+	
+	
+}
