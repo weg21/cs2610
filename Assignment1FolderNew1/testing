@@ -51,11 +51,30 @@ public class testing implements ActionListener
 		JButton btnL3[] = {z,x,c,v,b,n,m};
 		
 		MouseAdapter listening =new java.awt.event.MouseAdapter() {
+//		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+//		    	if(SwingUtilities.isRightMouseButton(evt)) { return;}
+//		    	JButton btn = (JButton) evt.getSource();
+//		        System.out.println(btn.getText()+"Clicked");
+//		    }
+		    
 		    public void mousePressed(java.awt.event.MouseEvent evt) {
 		    	if(SwingUtilities.isRightMouseButton(evt)) { return;}
 		    	JButton btn = (JButton) evt.getSource();
-		        System.out.println(btn.getText());
+		        System.out.println(btn.getText()+"Pressed");
 		    }
+		    
+		    public void mouseDragged(java.awt.event.MouseEvent evt) {
+		    	if(SwingUtilities.isRightMouseButton(evt)) { return;}
+		    	JButton btn = (JButton) evt.getSource();
+		        System.out.println(btn.getText()+"Dragged");
+		    }
+		    
+		    public void mouseReleased(java.awt.event.MouseEvent evt) {
+		    	if(SwingUtilities.isRightMouseButton(evt)) { return;}
+		    	JButton btn = (JButton) evt.getSource();
+		        System.out.println(btn.getText()+"Released");
+		    }
+		    
 		};
 		
 		for(int cont=0;cont<10;cont++)
