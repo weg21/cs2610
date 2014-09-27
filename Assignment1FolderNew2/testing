@@ -1,0 +1,302 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.event.MouseInputAdapter;
+
+//import GlassPane.MListener;
+
+public class testing implements ActionListener
+{
+	static private GlassPane glassPane;
+	private static void createAndShowGUI(){
+		JFrame frame = new JFrame("Virtual Keyboard");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container contentPane = frame.getContentPane();
+		contentPane.setLayout(new GridBagLayout());
+		GridBagConstraints cons = new GridBagConstraints();
+		JButton b=new JButton("b");
+		b.setName("b");
+		JButton n=new JButton("n"); 
+		JButton m=new JButton("m");
+		JButton l=new JButton("l");
+		JButton v=new JButton("v"); 
+		JButton z=new JButton("z");
+		JButton y=new JButton("y");
+		JButton x=new JButton("x");
+		JButton c=new JButton("c"); 
+		JButton k=new JButton("k");
+		JButton w=new JButton("w");
+		JButton q=new JButton("q");
+		JButton s=new JButton("s");
+		JButton e=new JButton("e");
+		JButton d=new JButton("d");
+		JButton f=new JButton("f");
+		JButton r=new JButton("r");
+		JButton t=new JButton("t");
+		JButton u=new JButton("u");
+		JButton i=new JButton("i"); 
+		JButton o=new JButton("o"); 
+		JButton p=new JButton("p");
+		JButton a=new JButton("a");
+		JButton g=new JButton("g");
+		JButton h=new JButton("h");
+		JButton j=new JButton("j");
+		JButton space=new JButton(" ");
+
+		JButton btnL1[] = {q,w,e,r,t,y,u,i,o,p};
+		JButton btnL2[] = {a,s,d,f,g,h,j,k,l};
+		JButton btnL3[] = {z,x,c,v,b,n,m};
+
+		
+/*The Mouse Listener for Keyboard Panel*/		
+		MouseAdapter listening =new java.awt.event.MouseAdapter() {
+		    
+		    public void mousePressed(java.awt.event.MouseEvent evt) {
+		    	if(SwingUtilities.isRightMouseButton(evt)) { return;}
+		    	JButton btn = (JButton) evt.getSource();
+		        System.out.println(btn.getText()+"Pressed");
+		    }
+		    
+//		    public void mouseDragged(java.awt.event.MouseEvent evt) {
+//		    	if(SwingUtilities.isRightMouseButton(evt)) { return;}
+//		    	JButton btn = (JButton) evt.getSource();
+//		        System.out.println(btn.getText()+"Dragged");
+//		    }
+		    
+		    public void mouseReleased(java.awt.event.MouseEvent evt) {
+		    	if(SwingUtilities.isRightMouseButton(evt)) { return;}
+		    	JButton btn = (JButton) evt.getSource();
+		        System.out.println(btn.getText()+"Released");
+		    }
+		    
+//		    public void mouseMoved(java.awt.event.MouseEvent evt) {
+//	    	if(SwingUtilities.isRightMouseButton(evt)) { return;}
+//	    	JButton btn = (JButton) evt.getSource();
+//	        System.out.println(btn.getText()+"Moved");
+//	    }		    
+		};
+
+/*Adding buttons to make a virtual keyboard in contentPane*/
+		for(int cont=0;cont<10;cont++)
+		{
+			cons.weightx = 0.5;
+			cons.fill = GridBagConstraints.HORIZONTAL;
+			cons.gridx = cont;
+			cons.gridy = 0;
+			contentPane.add(btnL1[cont], cons);
+			btnL1[cont].addMouseListener(listening);
+			
+		}
+		for(int cont=0;cont<9;cont++)
+		{
+			cons.weightx = 0.5;
+			cons.fill = GridBagConstraints.HORIZONTAL;
+			cons.gridx = cont;
+			cons.gridy = 1;
+			contentPane.add(btnL2[cont], cons);
+			btnL2[cont].addMouseListener(listening);
+		}
+		for(int cont=0;cont<7;cont++)
+		{
+			cons.weightx = 0.5;
+			cons.fill = GridBagConstraints.HORIZONTAL;
+			cons.gridx = cont+1;
+			cons.gridy = 2;
+			contentPane.add(btnL3[cont], cons);
+			btnL3[cont].addMouseListener(listening);
+		}
+		
+		cons.weightx = 0.5;
+		cons.fill = GridBagConstraints.HORIZONTAL;
+		cons.gridx = 1;
+		cons.gridy = 3;
+		cons.gridwidth = 7;
+		contentPane.add(space,cons);
+		space.addMouseListener(listening);
+/*Add a glassPane (an object of GlassPane class) to implement the drawing lines*/		
+		glassPane = new GlassPane(frame.getContentPane());
+		glassPane.setOpaque(false);
+		frame.setGlassPane(glassPane);
+		glassPane.setVisible(true);
+		frame.pack();
+		frame.setVisible(true);
+
+
+}
+
+	
+public static void main(String[] args) {
+	javax.swing.SwingUtilities.invokeLater(new Runnable(){
+		public void run() {
+			createAndShowGUI();
+		}
+	});
+}
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+}
+
+/*GlassPane: drawing lines on this panel, while dispatching the pressing events to keyboard panel*/
+class GlassPane extends JPanel{
+	
+	Point point;
+	ArrayList<Point> pointList;
+	//Container container;
+	ArrayList<JButton> btnList = new ArrayList<JButton>();
+	
+	public GlassPane(Container cPane) {
+		point=null;  
+		pointList = new ArrayList<Point>();
+		MListener listener = new MListener(this,cPane);
+		this.addMouseListener(listener);
+		this.addMouseMotionListener(listener);
+	
+	}
+	
+	public void setPoint(Point p) {
+	    point = p;
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		g.setColor(Color.red);
+		Graphics2D g2=(Graphics2D)g;
+		g2.setStroke(new BasicStroke(2));
+			if(point!=null)
+				{
+				for(int i=0;i<(pointList.size()-1);i++)
+					{
+						g.drawLine(pointList.get(i).x,pointList.get(i).y,pointList.get(i+1).x,pointList.get(i+1).y);
+					}
+				}
+	}
+	
+	/******************************************/
+	
+	
+	
+		class MListener extends MouseInputAdapter{
+		
+		    Toolkit toolkit;
+		    GlassPane glassPane;
+		    Container contentPane;
+		 
+		    public MListener(GlassPane glassPane, Container contentPane) {
+		        toolkit = Toolkit.getDefaultToolkit();
+		        this.glassPane = glassPane;
+		        this.contentPane = contentPane;
+		    }
+		 
+		    public void mouseMoved(MouseEvent e) {
+		        redispatchMouseEvent(e, false);
+		    }
+		 
+		    public void mouseDragged(MouseEvent e) {
+		    	redispatchMouseEvent(e, true);
+				point=e.getPoint();
+				pointList.add(point);
+				//btnList.add((JButton) e.getSource());
+		    	//System.out.println(((JButton)e.getSource()).getText());
+		    }
+		 
+		    public void mouseClicked(MouseEvent e) {
+		        redispatchMouseEvent(e, false);
+		    }
+		 
+		    public void mouseEntered(MouseEvent e) {
+		        redispatchMouseEvent(e, false);
+		    }
+		 
+		    public void mouseExited(MouseEvent e) {
+		        redispatchMouseEvent(e, false);
+		    }
+		 
+		    public void mousePressed(MouseEvent e) {
+		        redispatchMouseEvent(e, false);
+		    }
+		 
+		    public void mouseReleased(MouseEvent e) {
+		    	if(SwingUtilities.isLeftMouseButton(e))
+				{
+					redispatchMouseEvent(e, true);
+					pointList.clear();
+					repaint();
+				}
+		    	else{
+		    		redispatchMouseEvent(e, false);
+		    	}
+				
+		    }
+		 
+		    //A basic implementation of redispatching events.
+		private void redispatchMouseEvent(MouseEvent e,
+		                                  boolean tF) {
+		    Point glassPanePoint = e.getPoint();
+		    Container container = contentPane;
+		    Point containerPoint = SwingUtilities.convertPoint(
+		                                    glassPane,
+		                                    glassPanePoint,
+		                                    contentPane);
+		    if (containerPoint.y < 0) { //we're not in the content pane
+		} else {
+		    //The mouse event is probably over the content pane.
+		//Find out exactly which component it's over.  
+		Component component = 
+		    SwingUtilities.getDeepestComponentAt(
+		                            container,
+		                            containerPoint.x,
+		                            containerPoint.y);
+		                 
+		if ((component != null)) {
+		    //Forward events over the check box.
+		        Point componentPoint = SwingUtilities.convertPoint(
+		                                    glassPane,
+		                                    glassPanePoint,
+		                                    component);
+		        component.dispatchEvent(new MouseEvent(component,
+		                                             e.getID(),
+		                                             e.getWhen(),
+		                                             e.getModifiers(),
+		                                             componentPoint.x,
+		                                             componentPoint.y,
+		                                             e.getClickCount(),
+		                                             e.isPopupTrigger()));
+		  //      component.dispatchEvent(e);
+		    }
+		}
+		 
+		//Update the glass pane if requested.
+		    if (tF) {
+		        glassPane.setPoint(glassPanePoint);
+		        glassPane.repaint();
+		    }
+		}
+		
+		protected String DraggingButton(Point point) {
+			String drgBtn = "";
+			Point containerPoint = SwingUtilities.convertPoint(glassPane, point, contentPane);
+			if (containerPoint.y >= 0) {
+				Component component = SwingUtilities.getDeepestComponentAt(contentPane, containerPoint.x, containerPoint.y);
+				if (component != null && component instanceof JButton) {
+					drgBtn = ((JButton) component).getText();
+				}
+			}
+			return drgBtn; // gesture mode will not take whitespace
+		}
+		
+	}
+}
